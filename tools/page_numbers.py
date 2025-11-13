@@ -285,7 +285,7 @@ def render_page_numbers_tool():
         if st.button("🔢 Add Page Numbers to All Pages", type="primary", use_container_width=True):
             with st.spinner("Adding page numbers..."):
                 output_filename = f"numbered_{uploaded_file.name}"
-                output_path = get_unique_filename("outputs", output_filename)
+                output_path = get_unique_filename(output_filename, "outputs")
                 
                 success = add_page_numbers_to_pdf(
                     temp_path,

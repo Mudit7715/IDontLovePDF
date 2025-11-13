@@ -2,8 +2,15 @@
 import os
 import sys
 import streamlit as st
-from weasyprint import HTML, CSS
 from io import BytesIO
+
+# Try to import WeasyPrint with graceful error handling
+try:
+    from weasyprint import HTML, CSS
+    WEASYPRINT_AVAILABLE = True
+except (ImportError, OSError) as e:
+    WEASYPRINT_AVAILABLE = False
+    WEASYPRINT_ERROR = str(e)
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils.file_ops import save_uploaded_file, get_unique_filename, get_file_size_mb
@@ -24,6 +31,10 @@ def html_to_pdf(input_path: str = None, html_string: str = None, output_path: st
     Returns:
         bool: Success status
     """
+    if not WEASYPRINT_AVAILABLE:
+        st.error("WeasyPrint is not available. Please install required dependencies.")
+        return False
+        
     try:
         if input_path:
             # Convert from file
@@ -49,6 +60,37 @@ def render_html_to_pdf_tool():
     """Render the HTML to PDF tool interface."""
     st.title("🌐 HTML to PDF")
     st.write("Convert HTML files or code to PDF format")
+    
+    # Check if WeasyPrint is available
+    if not WEASYPRINT_AVAILABLE:
+        st.error("🚫 WeasyPrint is not available")
+        
+        with st.expander("❗ Installation Required"):
+            st.markdown(f"""
+            **Error:** {WEASYPRINT_ERROR}
+            
+            **WeasyPrint requires additional system libraries on Windows:**
+            
+            ```bash
+            # Install via conda (recommended for Windows)
+            conda install -c conda-forge weasyprint gtk3 pango cairo glib
+            
+            # Or via pip + manual GTK installation
+            pip install weasyprint
+            # Then install GTK3 runtime from: https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer
+            ```
+            
+            **Alternative Solutions:**
+            1. Use the **PDF to HTML** tool for reverse conversion
+            2. Use online HTML to PDF converters temporarily
+            3. Install GTK3 runtime and restart the application
+            
+            **For detailed instructions, visit:**
+            - [WeasyPrint Installation Guide](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation)
+            - [Windows Troubleshooting](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#troubleshooting)
+            """)
+        
+        return
     
     # Input method selection
     input_method = st.radio(

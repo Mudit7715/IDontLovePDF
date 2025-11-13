@@ -322,7 +322,7 @@ def render_crop_tool():
             else:
                 with st.spinner("Cropping PDF..."):
                     output_filename = f"cropped_{uploaded_file.name}"
-                    output_path = get_unique_filename("outputs", output_filename)
+                    output_path = get_unique_filename(output_filename, "outputs")
                     
                     success = crop_pdf(
                         temp_path,

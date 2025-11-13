@@ -168,7 +168,7 @@ def render_protect_tool():
                 else:
                     with st.spinner("Protecting PDF..."):
                         output_filename = f"protected_{uploaded_file.name}"
-                        output_path = get_unique_filename("outputs", output_filename)
+                        output_path = get_unique_filename(output_filename, "outputs")
                         
                         success = protect_pdf(
                             temp_path,
@@ -227,7 +227,7 @@ def render_protect_tool():
                     else:
                         with st.spinner("Unlocking PDF..."):
                             output_filename = f"unlocked_{uploaded_file.name}"
-                            output_path = get_unique_filename("outputs", output_filename)
+                            output_path = get_unique_filename(output_filename, "outputs")
                             
                             success = unlock_pdf(temp_path, output_path, password)
                             
