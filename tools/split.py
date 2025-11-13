@@ -247,7 +247,7 @@ def render_split_tool():
                         
                         # Create zip file
                         zip_filename = f"split_{uploaded_file.name.replace('.pdf', '')}.zip"
-                        zip_path = get_unique_filename("outputs", zip_filename)
+                        zip_path = get_unique_filename(zip_filename, "outputs")
                         
                         if create_zip_file(output_files, zip_path):
                             # Read zip file into memory before cleanup

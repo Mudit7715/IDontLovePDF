@@ -80,7 +80,9 @@ def render_merge_tool():
                     
                     # Merge PDFs
                     output_filename = "merged_output.pdf"
-                    output_path = get_unique_filename("outputs", output_filename)
+                    output_dir = "output"
+                    os.makedirs(output_dir, exist_ok=True)
+                    output_path = get_unique_filename(output_filename, output_dir)
                     
                     success = merge_pdfs(temp_files, output_path)
                     
