@@ -28,8 +28,7 @@ In the Map phase, the input dataset is divided into logical chunks, known as spl
 by a map task that applies a user-defined function to generate intermediate key-value pairs. For example,
 in a text mining use case such as log analytics, each log file can be treated as input data. The mapper
 extracts attributes such as timestamps, event types, or IP addresses, and emits key-value pairs like
-
-(event type, 1) to count occurrences.
+(event_type, 1) to count occurrences.
 
 This phase is data-local. The computation is moved to the node where the data resides, minimising data
 transfer costs and optimising performance.
@@ -57,7 +56,7 @@ PAGE 2
 
 3.1 Data Locality
 
-MapReduce optimises computation by executing map tasks close to their data. This reduces network 1/O
+MapReduce optimises computation by executing map tasks close to their data. This reduces network 1/0
 and ensures better cluster utilisation. Data locality minimises transfer latency, which directly contributes
 to both speed and reliability.
 
