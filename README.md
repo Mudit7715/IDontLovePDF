@@ -1,4 +1,4 @@
-# IdontLovePDF 📄
+# IDontLovePDF 📄
 
 A local, privacy-first PDF manipulation suite built with Python and Streamlit.
 
