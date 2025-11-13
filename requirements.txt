@@ -1,0 +1,17 @@
+streamlit
+PyPDF2
+pikepdf
+reportlab
+Pillow
+pycryptodome
+PyMuPDF
+python-docx
+weasyprint
+openpyxl
+python-pptx
+pdfplumber
+fitz
+pytesseract
+easyocr
+torch
+numpy
