@@ -138,7 +138,7 @@ def render_compress_tool():
         if st.button("🗜️ Compress PDF", type="primary", use_container_width=True):
             with st.spinner("Compressing PDF... This may take a moment."):
                 output_filename = f"compressed_{uploaded_file.name}"
-                output_path = get_unique_filename("outputs", output_filename)
+                output_path = get_unique_filename(output_filename, "outputs")
                 
                 success, orig_size, comp_size = compress_pdf(temp_path, output_path, compression_level)
                 

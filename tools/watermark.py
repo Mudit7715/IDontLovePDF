@@ -301,7 +301,7 @@ def render_watermark_tool():
             else:
                 with st.spinner("Adding watermark..."):
                     output_filename = f"watermarked_{uploaded_file.name}"
-                    output_path = get_unique_filename("outputs", output_filename)
+                    output_path = get_unique_filename(output_filename, "outputs")
                     
                     success = add_watermark_to_pdf(
                         temp_path,

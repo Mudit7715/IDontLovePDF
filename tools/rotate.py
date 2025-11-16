@@ -123,7 +123,7 @@ def render_rotate_tool():
             else:
                 with st.spinner("Rotating PDF..."):
                     output_filename = f"rotated_{uploaded_file.name}"
-                    output_path = get_unique_filename("outputs", output_filename)
+                    output_path = get_unique_filename(output_filename, "outputs")
                     
                     # Rotate PDF
                     pages_to_rotate = selected_pages if rotate_mode == "Specific pages" else None
